@@ -3,6 +3,7 @@ import { INVALID_MOVE } from 'boardgame.io/core';
 export const Gomoku = {
     setup: () => ({
         board: Array.from(Array(board_size), _ => Array(board_size).fill(null)),
+        board_size: board_size,
     }),
 
     turn: {
@@ -33,7 +34,7 @@ export const Gomoku = {
     },
 };
 
-const board_size = 5;
+const board_size = 10;
 
 const is_inside_board = (p) => {
     return (p[0] >= 0) && (p[0] < board_size) && (p[0] >= 0) && (p[1] < board_size);

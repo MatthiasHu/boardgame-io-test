@@ -1,5 +1,6 @@
 .board_table {
   background-color: lightgray;
+  margin: 1em;
 }
 
 .board_point {
@@ -12,13 +13,13 @@
   height: 0.5em;
   background-color: black;
 }
-.stone_Black {
+.stone {
   width: 2em;
   height: 2em;
+}
+.stone_Black {
   background-color: black;
 }
 .stone_White {
-  width: 2em;
-  height: 2em;
   background-color: white;
 }
