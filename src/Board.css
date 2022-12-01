@@ -1,0 +1,24 @@
+.board_table {
+  background-color: lightgray;
+}
+
+.board_point {
+  width: 2em;
+  height: 2em;
+}
+
+.empty_point {
+  width: 0.5em;
+  height: 0.5em;
+  background-color: black;
+}
+.stone_Black {
+  width: 2em;
+  height: 2em;
+  background-color: black;
+}
+.stone_White {
+  width: 2em;
+  height: 2em;
+  background-color: white;
+}

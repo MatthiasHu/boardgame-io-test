@@ -11,9 +11,9 @@ export const Gomoku = {
     },
 
     moves: {
-        placeStone: ({G, playerId}, point) => {
+        placeStone: ({G, playerID}, point) => {
             if (G.board[point[0]][point[1]] === null) {
-                G.board[point[0]][point[1]] = playerId;
+                G.board[point[0]][point[1]] = playerID;
             }
             else {
                 return INVALID_MOVE;
@@ -23,7 +23,7 @@ export const Gomoku = {
 
     endIf: ({ G, ctx }) => {
         for (let i = 0; i < 2; i++) {
-            if (find_win(G.board, i) !== null) {
+            if (find_win(G.board, ''+i) !== null) {
                 return { winner: i };
             }
         }
@@ -43,7 +43,7 @@ const is_full_board = (board) => {
     return board.every(column => column.every(entry => entry !== null));
 };
 
-const find_win = (board, playerId) => {
+const find_win = (board, playerID) => {
     const deltas = [[0, 1], [1, 0], [1, 1], [-1, 1]];
     const winning_sets = [];
     for (let x0 = 0; x0 < board_size; x0++) {
@@ -59,7 +59,7 @@ const find_win = (board, playerId) => {
     }
 
     const wins = winning_sets.filter(set => {
-        return set.every(p => is_inside_board(p) && board[p[0]][p[1]] === playerId);
+        return set.every(p => is_inside_board(p) && board[p[0]][p[1]] === playerID);
     });
 
     if (wins.length > 0) {
