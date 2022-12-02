@@ -28,8 +28,10 @@ export const GomokuBoard = ({ctx, G, moves}) => {
             const contents_className = c !== null ? ('stone stone_' + player_words[c]) : 'empty_point';
             const on_click = _ => moves.placeStone([x, y]);
             row.push(
-                <td key={[x, y]} className="board_point" onClick={on_click}>
-                    <div className={contents_className}></div>
+                <td key={[x, y]}>
+                    <div className="board_point" onClick={on_click}>
+                        <div className={contents_className}></div>
+                    </div>
                 </td>
             )
         }
