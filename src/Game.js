@@ -25,12 +25,26 @@ export const Gomoku = {
     endIf: ({ G, ctx }) => {
         for (let i = 0; i < 2; i++) {
             if (find_win(G.board, ''+i) !== null) {
-                return { winner: i };
+                return { winner: ''+i };
             }
         }
         if (is_full_board(G.board)) {
             return { draw: true };
         }
+    },
+
+    ai: {
+        enumerate: (G, ctx) => {
+            const moves = [];
+            for (const x of G.board.keys()) {
+                for (const y of G.board[x].keys()) {
+                    if (G.board[x][y] === null) {
+                        moves.push({ move: 'placeStone', args: [[x, y]] });
+                    }
+                }
+            }
+            return moves;
+        },
     },
 };
 
