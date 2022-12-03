@@ -7,6 +7,7 @@ const RawApp = Client({
   game: Gomoku,
   board: GomokuBoard,
   multiplayer: SocketIO({ server: 'localhost:8000' }),
+  debug: true,
 });
 
 const App = _ => (

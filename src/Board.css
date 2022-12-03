@@ -1,6 +1,5 @@
 .board_table {
   background-color: lightgray;
-  margin: 1em;
   border-collapse: collapse;
   box-shadow: 0em 0em 0.25em black;
   /* Make sure this element establishes a stacking context. */
@@ -15,6 +14,7 @@ td {
 .board_point {
   width: 2em;
   height: 2em;
+  /* Center content (particularly if it is an empty_point). */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,10 +31,14 @@ td {
   width: 2em;
   height: 2em;
   border-radius: 50%;
+  /* Stone should be positioned, so that the shadow is positioned relative to it. */
+  /* (Somehow it also works without this...?) */
+  position: relative;
   /* We can not set a z-index here, that would establish a new stacking context. */
 }
 .stone::before {
   content: "";
+  display: block;
   /* Negative z-index so the shadow is below nearby stones. */
   position: absolute;
   z-index: -1;
