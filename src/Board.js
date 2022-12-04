@@ -3,7 +3,7 @@ import './Board.css';
 
 export const GomokuBoard = ({ctx, G, moves, playerID}) => {
     const board_size = G.board_size;
-    const active = '' + (ctx.currentPlayer === playerID);
+    const active = '' + (ctx.currentPlayer === playerID && !ctx.gameover);
 
     const player_words = ['Black', 'White'];
 
