@@ -16,7 +16,7 @@ export const GomokuBoard = ({ctx, G, moves}) => {
             }
         }
         else {
-            return 'Keep playing.';
+            return player_words[ctx.currentPlayer] + ' to play.';
         }
     })();
 
