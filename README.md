@@ -1,7 +1,7 @@
 # Some experimentation with the boardgame.io framework
 
 I followed the [`boardgame.io` tutorial](https://boardgame.io/documentation/#/tutorial),
-using React.
+using React.js.
 
 After cloning this repo, run `npm install`.
 (This creates `./node_modules`, taking up about 500MB.)
