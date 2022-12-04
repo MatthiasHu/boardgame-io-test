@@ -1,25 +1,23 @@
-import { Client } from 'boardgame.io/react';
-import { SocketIO } from 'boardgame.io/multiplayer';
-import { Gomoku } from './Game';
-import { GomokuBoard } from './Board';
+import { useState } from 'react';
+import { GomokuClient } from './GomokuClient';
 
-const SocketIO_config = {
-  server: 'https://schwubbl.de/',
-  // For testing, connect to localhost instead.
-  // server: 'localhost:8000',
+const App = _ => {
+  const [playerID, setPlayerID] = useState(null);
+
+  if (playerID === null) {
+    return (
+      <div>
+        Play as
+        <button onClick={_ => setPlayerID('0')}>Black</button>
+        <button onClick={_ => setPlayerID('1')}>White</button>
+      </div>
+    );
+  }
+  else {
+    return (
+      <GomokuClient playerID={playerID} />
+    );
+  }
 };
-
-const RawApp = Client({
-  game: Gomoku,
-  board: GomokuBoard,
-  multiplayer: SocketIO(SocketIO_config),
-  debug: true,
-});
-
-const App = _ => (
-  <div>
-    <RawApp playerID="0" />
-  </div>
-);
 
 export default App;
