@@ -1,13 +1,13 @@
 import React from 'react';
 import './Board.css';
 
-export const GomokuBoard = ({ctx, G, moves, playerID}) => {
+export const GomokuBoard = ({ctx, G, moves, playerID, next_match}) => {
     const board_size = G.board_size;
     const active = '' + (ctx.currentPlayer === playerID && !ctx.gameover);
 
     const player_words = ['Black', 'White'];
 
-    const gameover_text = (_ => {
+    const game_status_text = (_ => {
         if (ctx.gameover) {
             if (ctx.gameover.draw) {
                 return 'This is a draw!';
@@ -54,7 +54,8 @@ export const GomokuBoard = ({ctx, G, moves, playerID}) => {
             <table className='board_table' player_is_active={active}>
                 <tbody>{tbody}</tbody>
             </table>
-            <p>{gameover_text}</p>
+            <p>{game_status_text}</p>
+            {ctx.gameover ? <button onClick={next_match}>Next match =></button> : false}
         </div>
     );
 }

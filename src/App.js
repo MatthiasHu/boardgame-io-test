@@ -1,8 +1,25 @@
 import { useState } from 'react';
 import { GomokuClient } from './GomokuClient';
 
+const next_matchID = matchID => {
+  const regexp = /\-[0-9]*$/;
+  const increment_suffix = suffix => {
+    const n = + suffix.slice(1);
+    return '-' + (n + 1);
+  }
+  if (matchID.search(regexp) >= 0) {
+    return matchID.replace(regexp, increment_suffix);
+  }
+  else {
+    return matchID + '-1';
+  }
+}
+
 const App = _ => {
   const [playerID, setPlayerID] = useState(null);
+  const [matchID, setMatchID] = useState('default');
+
+  const next_match = _ => setMatchID(next_matchID(matchID));
 
   if (playerID === null) {
     return (
@@ -15,7 +32,11 @@ const App = _ => {
   }
   else {
     return (
-      <GomokuClient playerID={playerID} />
+      <GomokuClient
+        playerID={playerID}
+        matchID={matchID}
+        next_match={next_match}
+      />
     );
   }
 };
