@@ -25,13 +25,16 @@ td {
 
 /* Center a single child in the nearest positioned ancestor. */
 .centering {
-  display: block;
   position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+/* Don't squeeze the centered child if it is wider than the parent. */
+.centering > * {
+  flex-shrink: 0;
 }
 
 .empty_point {
@@ -67,4 +70,12 @@ td {
 }
 .stone_White {
   background-color: white;
+}
+
+.last_play_of_Black ,
+.last_play_of_White {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  border: 0.1em solid #888;
 }

@@ -26,14 +26,22 @@ export const GomokuBoard = ({ctx, G, moves, playerID}) => {
         const row = [];
         for (let x = 0; x < board_size; x++) {
             const c = G.board[x][y];
-            const contents_className = c !== null ? ('stone stone_' + player_words[c]) : 'empty_point';
             const on_click = _ => moves.placeStone([x, y]);
+
+            const children = [];
+            children.push(['empty', <div className='empty_point' />]);
+            if (c !== null) {
+                children.push(['stone', <div className={'stone stone_' + player_words[c]} />]);
+            }
+            if (G.last_play !== null && G.last_play[0] === x && G.last_play[1] === y) {
+                console.log(c);
+                children.push(['last', <div className={'last_play_of_' + player_words[c]} />]);
+            }
+
             row.push(
-                <td key={[x, y]}>
-                    <div className="board_point" onClick={on_click}>
-                        <div className="centering">
-                            <div className={contents_className}></div>
-                        </div>
+                <td key={[x, y]} onClick={on_click}>
+                    <div className="board_point">
+                        {children.map(kc => <div className='centering' key={kc[0]}>{kc[1]}</div>)}
                     </div>
                 </td>
             )
