@@ -1,8 +1,9 @@
 import React from 'react';
 import './Board.css';
 
-export const GomokuBoard = ({ctx, G, moves}) => {
+export const GomokuBoard = ({ctx, G, moves, playerID}) => {
     const board_size = G.board_size;
+    const active = '' + (ctx.currentPlayer === playerID);
 
     const player_words = ['Black', 'White'];
 
@@ -40,10 +41,10 @@ export const GomokuBoard = ({ctx, G, moves}) => {
 
     return (
         <div>
-            <table className='board_table'>
+            <table className='board_table' player_is_active={active}>
                 <tbody>{tbody}</tbody>
             </table>
-            <div>{gameover_text}</div>
+            <p>{gameover_text}</p>
         </div>
     );
 }
