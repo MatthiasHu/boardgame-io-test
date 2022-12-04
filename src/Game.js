@@ -4,6 +4,7 @@ export const Gomoku = {
     setup: () => ({
         board: Array.from(Array(board_size), _ => Array(board_size).fill(null)),
         board_size: board_size,
+        last_play: null,
     }),
 
     turn: {
@@ -15,6 +16,7 @@ export const Gomoku = {
         placeStone: ({G, playerID}, point) => {
             if (G.board[point[0]][point[1]] === null) {
                 G.board[point[0]][point[1]] = playerID;
+                G.last_play = [point[0], point[1]];
             }
             else {
                 return INVALID_MOVE;
