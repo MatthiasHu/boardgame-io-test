@@ -31,7 +31,9 @@ export const GomokuBoard = ({ctx, G, moves, playerID}) => {
             row.push(
                 <td key={[x, y]}>
                     <div className="board_point" onClick={on_click}>
-                        <div className={contents_className}></div>
+                        <div className="centering">
+                            <div className={contents_className}></div>
+                        </div>
                     </div>
                 </td>
             )

@@ -13,12 +13,22 @@
 
 td {
   padding: 0em;
+  /* Setting width/height in a <td> does not seem to work well if the table */
+  /* overflows, so we use a separate .board_point <div>. */
 }
 
 .board_point {
   width: 2em;
   height: 2em;
-  /* Center content (particularly if it is an empty_point). */
+  position: relative;
+}
+
+/* Center a single child in the nearest positioned ancestor. */
+.centering {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
