@@ -3,10 +3,16 @@ import { SocketIO } from 'boardgame.io/multiplayer';
 import { Gomoku } from './Game';
 import { GomokuBoard } from './Board';
 
+const SocketIO_config = {
+  server: 'https://schwubbl.de/bgio-entry/',
+  // For testing, connect to localhost instead.
+  // server: 'localhost:8000',
+};
+
 const RawApp = Client({
   game: Gomoku,
   board: GomokuBoard,
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  multiplayer: SocketIO(SocketIO_config),
   debug: true,
 });
 
