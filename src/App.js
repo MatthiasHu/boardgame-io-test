@@ -4,7 +4,7 @@ import { Gomoku } from './Game';
 import { GomokuBoard } from './Board';
 
 const SocketIO_config = {
-  server: 'https://schwubbl.de/bgio-entry/',
+  server: 'https://schwubbl.de/',
   // For testing, connect to localhost instead.
   // server: 'localhost:8000',
 };
