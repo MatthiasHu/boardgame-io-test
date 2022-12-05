@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { GomokuClient } from './GomokuClient';
 
 const next_matchID = matchID => {
-  const regexp = /\-[0-9]*$/;
+  const regexp = /-[0-9]*$/;
   const increment_suffix = suffix => {
     const n = + suffix.slice(1);
     return '-' + (n + 1);
-  }
+  };
   if (matchID.search(regexp) >= 0) {
     return matchID.replace(regexp, increment_suffix);
   }
