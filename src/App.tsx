@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GomokuClient } from './GomokuClient';
+import { GomokuClient } from './GomokuClient.ts';
 
 const next_matchID = matchID => {
   const regexp = /-[0-9]*$/;

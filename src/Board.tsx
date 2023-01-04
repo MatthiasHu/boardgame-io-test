@@ -55,7 +55,7 @@ export const GomokuBoard = ({ctx, G, moves, playerID, next_match}) => {
                 <tbody>{tbody}</tbody>
             </table>
             <p>{game_status_text}</p>
-            {ctx.gameover ? <button onClick={next_match}>Next match =></button> : false}
+            {ctx.gameover ? <button onClick={next_match}>{'Next match =>'}</button> : false}
         </div>
     );
 }
