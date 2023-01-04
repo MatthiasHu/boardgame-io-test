@@ -8,19 +8,18 @@ using React.js.
 
 After installing Node.js and cloning this repo, run `npm install`.
 (This creates `./node_modules`, taking up about 500MB.)
-Then we can serve the web app on a local web server by `npm start`.
-It will try to connect to the hardcoded gamemaster server (backend).
 
-We can run a local gamemaster server by `npm run gamemaster-server`
-(in another terminal)
-and connenct to it by changing the server address in `src/GomokuClient.js`.
+We can run a local gamemaster server (backend) by `npm run gamemaster-server`
+and serve the web app on a local web server by `npm start` (in another terminal).
 
 
 ## deploying
 
 To host the app on a public Nginx server:
 - Clone the repo on the public server and run `npm install` there.
-- Replace the hardcoded server address with the desired one.
+- Change the server address in `src/GomokuClient.js`
+  from `'localhost:8000'` to the desired one,
+  like `'https://example.org/'`.
 - Run `npm run build`.
 - Copy the contents of the resulting `build` directory
   somewhere below the web root served by Nginx.

@@ -4,9 +4,7 @@ import { Gomoku } from './Game';
 import { GomokuBoard } from './Board';
 
 const SocketIO_config = {
-  server: 'https://schwubbl.de/',
-  // For testing, connect to localhost instead.
-  // server: 'localhost:8000',
+  server: 'localhost:8000',
 };
 
 export const GomokuClient = Client({
