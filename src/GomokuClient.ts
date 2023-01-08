@@ -1,7 +1,7 @@
 import { Client } from 'boardgame.io/react';
 import { SocketIO } from 'boardgame.io/multiplayer';
-import { Gomoku } from './Game.ts';
-import { GomokuBoard } from './Board.tsx';
+import { Gomoku } from './Game';
+import { GomokuBoard } from './Board';
 
 const SocketIO_config = {
   server: 'localhost:8000',
