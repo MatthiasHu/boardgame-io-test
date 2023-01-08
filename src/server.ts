@@ -1,5 +1,5 @@
-const { Server, Origins } = require('boardgame.io/server')
-const { Gomoku } = require('./Game.ts')
+import { Server, Origins } from 'boardgame.io/server';
+import { Gomoku } from './Game';
 
 const server = Server({
     games: [Gomoku],
