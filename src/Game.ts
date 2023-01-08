@@ -1,6 +1,15 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
+import { Game, Move } from 'boardgame.io';
 
-export const Gomoku = {
+type Board = (null | string)[][];
+
+export interface GomokuState {
+    board: Board,
+    board_size: number,
+    last_play: null | number[],
+}
+
+export const Gomoku: Game<GomokuState> = {
     setup: () => ({
         board: Array.from(Array(board_size), _ => Array(board_size).fill(null)),
         board_size: board_size,
@@ -52,17 +61,17 @@ export const Gomoku = {
 
 const board_size = 10;
 
-const is_inside_board = (p) => {
+const is_inside_board = (p: number[]) : boolean => {
     return (p[0] >= 0) && (p[0] < board_size) && (p[0] >= 0) && (p[1] < board_size);
 };
 
-const is_full_board = (board) => {
+const is_full_board = (board: Board) : boolean => {
     return board.every(column => column.every(entry => entry !== null));
 };
 
-const find_win = (board, playerID) => {
+const find_win = (board: Board, playerID: string) : null | number[][] => {
     const deltas = [[0, 1], [1, 0], [1, 1], [-1, 1]];
-    const winning_sets = [];
+    const winning_sets: number[][][] = [];
     for (let x0 = 0; x0 < board_size; x0++) {
         for (let y0 = 0; y0 < board_size; y0++) {
             deltas.forEach(delta => {
