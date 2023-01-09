@@ -1,12 +1,16 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
 import { Game, Move } from 'boardgame.io';
 
-type Board = (null | string)[][];
+export type PlayerID = '0' | '1';
+
+export type Point = [number, number];
+
+export type Board = (null | PlayerID)[][];
 
 export interface GomokuState {
     board: Board,
     board_size: number,
-    last_play: null | number[],
+    last_play: null | Point,
 }
 
 export const Gomoku: Game<GomokuState> = {
@@ -24,7 +28,7 @@ export const Gomoku: Game<GomokuState> = {
     moves: {
         placeStone: ({G, playerID}, point) => {
             if (G.board[point[0]][point[1]] === null) {
-                G.board[point[0]][point[1]] = playerID;
+                G.board[point[0]][point[1]] = playerID as PlayerID;
                 G.last_play = [point[0], point[1]];
             }
             else {
@@ -61,7 +65,7 @@ export const Gomoku: Game<GomokuState> = {
 
 const board_size = 10;
 
-const is_inside_board = (p: number[]) : boolean => {
+const is_inside_board = (p: Point) : boolean => {
     return (p[0] >= 0) && (p[0] < board_size) && (p[0] >= 0) && (p[1] < board_size);
 };
 
@@ -69,13 +73,13 @@ const is_full_board = (board: Board) : boolean => {
     return board.every(column => column.every(entry => entry !== null));
 };
 
-const find_win = (board: Board, playerID: string) : null | number[][] => {
+const find_win = (board: Board, playerID: string) : null | Point[] => {
     const deltas = [[0, 1], [1, 0], [1, 1], [-1, 1]];
-    const winning_sets: number[][][] = [];
+    const winning_sets: Point[][] = [];
     for (let x0 = 0; x0 < board_size; x0++) {
         for (let y0 = 0; y0 < board_size; y0++) {
             deltas.forEach(delta => {
-                const set = [];
+                const set: Point[] = [];
                 for (let t = 0; t < 5; t++) {
                     set.push([x0 + t * delta[0], y0 + t * delta[1]]);
                 }
