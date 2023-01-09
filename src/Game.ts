@@ -1,5 +1,5 @@
 import { INVALID_MOVE } from 'boardgame.io/core';
-import { Game, Move } from 'boardgame.io';
+import { Game } from 'boardgame.io';
 
 export type PlayerID = '0' | '1';
 
@@ -37,7 +37,7 @@ export const Gomoku: Game<GomokuState> = {
         }
     },
 
-    endIf: ({ G, ctx }) => {
+    endIf: ({ G }) => {
         for (let i = 0; i < 2; i++) {
             if (find_win(G.board, ''+i) !== null) {
                 return { winner: ''+i };
@@ -49,7 +49,7 @@ export const Gomoku: Game<GomokuState> = {
     },
 
     ai: {
-        enumerate: (G, ctx) => {
+        enumerate: (G) => {
             const moves = [];
             for (const x of G.board.keys()) {
                 for (const y of G.board[x].keys()) {
