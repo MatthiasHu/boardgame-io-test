@@ -58,7 +58,7 @@ export const GomokuBoard = ({ctx, G, moves, playerID, next_match} : GomokuBoardP
 
     return (
         <div>
-            <table className='board_table' player_is_active={active}>
+            <table className='board_table' data-player_is_active={active}>
                 <tbody>{tbody}</tbody>
             </table>
             <p>{game_status_text}</p>
