@@ -1,7 +1,7 @@
 import type { BoardProps } from 'boardgame.io/react';
-import assert from 'node:assert';
 import type { PlayerID, GomokuState } from './Game';
 import './Board.css';
+import { assert } from './assert';
 
 interface GomokuBoardProps extends BoardProps<GomokuState> {
     next_match: () => void;
