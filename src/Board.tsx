@@ -42,7 +42,6 @@ export const GomokuBoard = ({ctx, G, moves, playerID, next_match} : GomokuBoardP
             }
             if (G.last_play !== null && G.last_play[0] === x && G.last_play[1] === y) {
                 assert(c !== null);
-                console.log(c);
                 children.push(['last', <div className={'last_play_of_' + player_words[c]} />]);
             }
 
