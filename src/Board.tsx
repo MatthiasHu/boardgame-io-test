@@ -1,11 +1,18 @@
-import React from 'react';
+import type { BoardProps } from 'boardgame.io/react';
+import assert from 'node:assert';
+import type { PlayerID, GomokuState } from './Game';
 import './Board.css';
 
-export const GomokuBoard = ({ctx, G, moves, playerID, next_match}) => {
+interface GomokuBoardProps extends BoardProps<GomokuState> {
+    next_match: () => void;
+}
+
+export const GomokuBoard = ({ctx, G, moves, playerID, next_match} : GomokuBoardProps) => {
     const board_size = G.board_size;
     const active = '' + (ctx.currentPlayer === playerID && !ctx.gameover);
 
-    const player_words = ['Black', 'White'];
+    const player_words = {'0': 'Black', '1': 'White'};
+    // const player_words = ['Black', 'White'];
 
     const game_status_text = (_ => {
         if (ctx.gameover) {
@@ -13,11 +20,11 @@ export const GomokuBoard = ({ctx, G, moves, playerID, next_match}) => {
                 return 'This is a draw!';
             }
             else {
-                return (player_words[ctx.gameover.winner] + ' wins!');
+                return (player_words[ctx.gameover.winner as PlayerID] + ' wins!');
             }
         }
         else {
-            return player_words[ctx.currentPlayer] + ' to play.';
+            return player_words[ctx.currentPlayer as PlayerID] + ' to play.';
         }
     })();
 
@@ -26,20 +33,21 @@ export const GomokuBoard = ({ctx, G, moves, playerID, next_match}) => {
         const row = [];
         for (let x = 0; x < board_size; x++) {
             const c = G.board[x][y];
-            const on_click = _ => moves.placeStone([x, y]);
+            const on_click = (_: any) : void => moves.placeStone([x, y]);
 
-            const children = [];
+            const children: [string, JSX.Element][] = [];
             children.push(['empty', <div className='empty_point' />]);
             if (c !== null) {
                 children.push(['stone', <div className={'stone stone_' + player_words[c]} />]);
             }
             if (G.last_play !== null && G.last_play[0] === x && G.last_play[1] === y) {
+                assert(c !== null);
                 console.log(c);
                 children.push(['last', <div className={'last_play_of_' + player_words[c]} />]);
             }
 
             row.push(
-                <td key={[x, y]} onClick={on_click}>
+                <td key={'' + [x, y]} onClick={on_click}>
                     <div className="board_point">
                         {children.map(kc => <div className='centering' key={kc[0]}>{kc[1]}</div>)}
                     </div>
