@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { PlayerID } from './Game';
 import { GomokuClient } from './GomokuClient';
 
-const next_matchID = matchID => {
+const next_matchID = (matchID: string) => {
   const regexp = /-[0-9]*$/;
-  const increment_suffix = suffix => {
+  const increment_suffix = (suffix: string) => {
     const n = + suffix.slice(1);
     return '-' + (n + 1);
   };
@@ -15,11 +16,11 @@ const next_matchID = matchID => {
   }
 }
 
-const App = _ => {
-  const [playerID, setPlayerID] = useState(null);
-  const [matchID, setMatchID] = useState('default');
+const App = () => {
+  const [playerID, setPlayerID] = useState<null | PlayerID>(null);
+  const [matchID, setMatchID] = useState<string>('default');
 
-  const next_match = _ => setMatchID(next_matchID(matchID));
+  const next_match = () => setMatchID(next_matchID(matchID));
 
   if (playerID === null) {
     return (
